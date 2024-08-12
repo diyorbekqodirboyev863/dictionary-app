@@ -3,49 +3,25 @@
 
 {% block content %}
 	<!-- Home. -->
-	<h1 style="margin-bottom: 20px;">Home</h1>
-	<div class="frame" style="margin-bottom: 10px">
-		<p>All words:</p>
-		<div class="m-frame">
-			<a href="{% url 'add_word' %}">
-				<span style="color: #19f505;">
-					<i class="fa-solid fa-plus"></i>
-				</span>
-				Add
-			</a>
-			<a href="#">
-				<span style="color: #f5d105;">
-					<i class="fa-solid fa-pen-to-square"></i>
-				</span>
-				Change
-			</a>
-		</div>
+	<h1>Home</h1>
+	<div>
+		<main>
+			<div class="m-flex">
+				<h3>
+					<a href="#">Dictionaries</a>
+				</h3>
+				<div>
+					<!-- Add. -->
+					<a href="{% url 'add_word' %}"><span style="color: #19f505;">
+							<i class="fa-solid fa-plus"></i></span>
+						<span>Add</span></a>
+					<span> | </span>
+					<!-- Change. -->
+					<a href="{% url 'change_dict' %}"><span style="color: #f5d105;">
+							<i class="fa-solid fa-pen-to-square"></i></span>
+						<span>Change</span></a>
+				</div>
+			</div>
+		</main>
 	</div>
-	{% if words %}
-		<!-- Table. -->
-		<table class="table">
-			<thead>
-				<tr>
-					<th>English</th>
-					<th>Russian</th>
-					<th>Uzbek</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for word in words %}
-					<tr>
-						<td>{{ word.en }}</td>
-						<td>{{ word.ru }}</td>
-						<td>
-							{% if word.uz %}
-								{{ word.uz }}
-							{% else %}
-								-
-							{% endif %}
-						</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	{% endif %}
 {% endblock %}
