@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+	<!-- Home. -->
+	<h1 style="margin-bottom: 20px;">Home</h1>
+	<div class="frame" style="margin-bottom: 10px">
+		<p>All words:</p>
+		<div class="m-frame">
+			<a href="{% url 'add_word' %}">
+				<span style="color: #19f505;">
+					<i class="fa-solid fa-plus"></i>
+				</span>
+				Add
+			</a>
+			<a href="#">
+				<span style="color: #f5d105;">
+					<i class="fa-solid fa-pen-to-square"></i>
+				</span>
+				Change
+			</a>
+		</div>
+	</div>
+	{% if words %}
+		<!-- Table. -->
+		<table class="table">
+			<thead>
+				<tr>
+					<th>English</th>
+					<th>Russian</th>
+					<th>Uzbek</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for word in words %}
+					<tr>
+						<td>{{ word.en }}</td>
+						<td>{{ word.ru }}</td>
+						<td>
+							{% if word.uz %}
+								{{ word.uz }}
+							{% else %}
+								-
+							{% endif %}
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% endif %}
+{% endblock %}

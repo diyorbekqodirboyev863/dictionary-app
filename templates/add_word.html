@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block title %}Add Dictionary{% endblock %}
+
+{% block content %}
+    <!-- Home. -->
+    <h1 style="margin-bottom: 20px;">Add Dictionary</h1>
+    <form action="{% url 'add_word' %}" method="post" class="add" style="margin-bottom: 20px">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th style="text-align: left;"><label for="en">English:</label></th>
+                <td><input type="text" placeholder="English" name="en" id="en" required /></td>
+            </tr>
+            <tr>
+                <th style="text-align: left;"><label for="ru">Russian:</label></th>
+                <td><input type="text" placeholder="Russian" name="ru" id="ru" required /></td>
+            </tr>
+            <tr>
+                <th style="text-align: left;"><label for="uz">Uzbek:</label></th>
+                <td><input type="text" placeholder="Uzbek" name="uz" id="uz" required /></td>
+            </tr>
+
+            <!-- Category. -->
+            <tr>
+                <th style="text-align: left;"><label for="category">Category:</label></th>
+                <td>
+                    <select id="category" name="category" required>
+                        {% if categories %}
+                            {% for category in categories %}
+                                <option value="{{ category.slug }}">{{ category.name }}</option>
+                            {% endfor %}
+                        {% endif %}
+                    </select>
+                    <div class="m-frame">
+						<a href="#">
+							<span style="color: #19f505;">
+								<i class="fa-solid fa-plus"></i>
+							</span>
+						</a>
+						<a href="#">
+							<span style="color: #f5d105;">
+								<i class="fa-solid fa-pen-to-square"></i>
+							</span>
+						</a>
+						<a href="#">
+							<span style="color: #0c63f0;">
+								<i class="fa-solid fa-eye"></i>
+							</span>
+						</a>
+					</div>
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align: left;"><label for="enpro">English Pronunciation:</label></th>
+                <td><input type="text" placeholder="English Pronunciation" name="enpro" id="enpro" /></td>
+            </tr>
+            <tr>
+                <th style="text-align: left;"><label for="rupro">Russian Pronunciation:</label></th>
+                <td><input type="text" placeholder="Russian Pronunciation" name="rupro" id="rupro" /></td>
+            </tr>
+            <tr>
+                <th style="text-align: left;"><label for="description">Description:</label></th>
+                <td><textarea placeholder="Type Description" name="description" id="description"></textarea></td>
+            </tr>
+
+            <!-- Term. -->
+            <tr>
+                <th style="text-align: left;"><label for="term">Term:</label></th>
+                <td>
+                    <select id="term" name="term" required>
+                        {% if terms %}
+                            {% for term in terms %}
+                                <option value="{{ term.slug }}">{{ term.name }}</option>
+                            {% endfor %}
+                        {% endif %}
+                    </select>
+                    <div class="m-frame">
+						<a href="#">
+							<span style="color: #19f505;">
+								<i class="fa-solid fa-plus"></i>
+							</span>
+						</a>
+						<a href="#">
+							<span style="color: #f5d105;">
+								<i class="fa-solid fa-pen-to-square"></i>
+							</span>
+						</a>
+						<a href="#">
+							<span style="color: #0c63f0;">
+								<i class="fa-solid fa-eye"></i>
+							</span>
+						</a>
+					</div>
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align: left;"><label for="toproc">To Process:</label></th>
+                <td><input type="checkbox" id="toproc" name="toproc" checked /></td>
+            </tr>
+        </table>
+        <button style="margin-top: 10px;" type="submit">Save</button>
+    </form>
+{% endblock %}
