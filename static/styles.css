@@ -100,40 +100,24 @@ ul li {
 	gap: 20px;
 }
 
-.add table,
-.add input,
-.add textarea {
+.form-group {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
 	width: 100%;
-}
-
-.add table,
-.add input,
-.add select,
-.add textarea {
 	font-size: 20px;
-}
-
-.add input,
-.add select,
-.add textarea {
-	padding: 8px 10px;
-}
-
-.add table {
-	border-collapse: collapse;
-}
-
-.add th,
-.add td {
+	border-bottom: 1px solid #fff;
 	padding: 10px 0;
 }
 
-.add th {
-	padding-right: 10px;
+.form-group label {
+	font-size: 30px;
 }
 
-.add tr {
-	border-bottom: 1px solid #fff;
+.form-group input, .form-group select, .form-group textarea {
+	font-size: 20px;
+	width: 70%;
+	padding: 8px 10px;
 }
 
 button {
