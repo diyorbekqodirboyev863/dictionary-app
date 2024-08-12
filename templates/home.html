@@ -3,21 +3,58 @@
 
 {% block content %}
 	<!-- Home. -->
-	<h1>Home</h1>
+	<h3>Main</h3>
 	<div>
 		<main>
+			<!-- Dictionaries -->
 			<div class="m-flex">
 				<h3>
 					<a href="#">Dictionaries</a>
 				</h3>
 				<div>
 					<!-- Add. -->
-					<a href="{% url 'add_word' %}"><span style="color: #19f505;">
+					<a class="a-control" href="{% url 'add_word' %}"><span style="color: #19f505;">
 							<i class="fa-solid fa-plus"></i></span>
 						<span>Add</span></a>
 					<span> | </span>
 					<!-- Change. -->
-					<a href="{% url 'change_dict' %}"><span style="color: #f5d105;">
+					<a class="a-control" href="{% url 'change_dict' %}"><span style="color: #f5d105;">
+							<i class="fa-solid fa-pen-to-square"></i></span>
+						<span>Change</span></a>
+				</div>
+			</div>
+
+			<!-- Categories -->
+			<div class="m-flex">
+				<h3>
+					<a href="#">Categories</a>
+				</h3>
+				<div>
+					<!-- Add. -->
+					<a class="a-control" href="{% url 'add_word' %}"><span style="color: #19f505;">
+							<i class="fa-solid fa-plus"></i></span>
+						<span>Add</span></a>
+					<span> | </span>
+					<!-- Change. -->
+					<a class="a-control" href="{% url 'change_dict' %}"><span style="color: #f5d105;">
+							<i class="fa-solid fa-pen-to-square"></i></span>
+						<span>Change</span></a>
+				</div>
+			</div>
+
+			<!-- Terms -->
+			<div class="m-flex">
+				<h3>
+					<a href="#">Terms</a>
+				</h3>
+				<div>
+					<!-- Add. -->
+					<a class="a-control" href="{% url 'add_word' %}"><span style="color: #19f505;">
+							<i class="fa-solid fa-plus"></i></span>
+						<span>Add</span></a>
+					<span> | </span>
+					<!-- Change. -->
+					<a class="a-control" href="{% url 'change_dict' %}"><span style="color: #f5d105;">
 							<i class="fa-solid fa-pen-to-square"></i></span>
 						<span>Change</span></a>
 				</div>
