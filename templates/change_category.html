@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Change Dictionary{% endblock %}
+
+{% block content %}
+	<!-- Change Category. -->
+	<h1>Select category entries to delete</h1>
+	{% if categories %}
+		<p>All words:</p>
+		<!-- Form. -->
+		<form method="post" action="{% url 'delete_category' %}">
+			{% csrf_token %}
+			<!-- Table. -->
+			<table>
+				<thead>
+					<tr>
+						<th><input type="checkbox" id="select-all" /></th>
+						<th>Name</th>
+						<th>Slug</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for category in categories %}
+						<tr>
+							<td><input type="checkbox" name="category_ids" value="{{ category.id }}" /></td>
+							<td><a href="{% url 'edit_category' category.id %}">{{ category.name }}</a></td>
+							<td>{{ category.slug }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<button id="del" type="submit" style="margin-top: 10px;">Delete Selected</button>
+		</form>
+	{% else %}
+		<p>No categories available.</p>
+	{% endif %}
+
+	<!-- Script to select/unselect all checkboxes. -->
+	<script>
+		document.getElementById('select-all').onclick = function() {
+			var checkboxes = document.getElementsByName('category_ids');
+
+			for (var checkbox of checkboxes) {
+				checkbox.checked = this.checked;
+			}
+		}
+	</script>
+{% endblock %}

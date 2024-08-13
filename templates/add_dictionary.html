@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Add Dictionary{% endblock %}
+
+{% block content %}
+    <!-- Add. -->
+    <h1>Add Dictionary</h1>
+    <form method="post" action="#">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+{% endblock %}
