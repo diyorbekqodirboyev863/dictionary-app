@@ -9,6 +9,10 @@ urlpatterns = [
 	path(route='change/dictionary/', view=views.change_dictionary, name='change_dictionary'),
 	path(route='edit/dictionary/<int:w_id>/', view=views.edit_dictionary, name='edit_dictionary'),
 	path(route='delete/dictionary/', view=views.delete_dictionary, name='delete_dictionary'),
+	path(route='details/dictionary/<int:w_id>/', view=views.details_dictionary, name='details_dictionary'),
+	# Speak.
+	path(route='speak/<int:w_id>/', view=views.speak, name='speak'),
+	path(route='speak/ru/<int:w_id>/', view=views.speak_ru, name='speak_ru'),
 
 	# Category.
 	path(route='add/category/', view=views.add_category, name='add_category'),

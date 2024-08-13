@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Details{% endblock %}
+
+{% block content %}
+    <!-- Details. -->
+    <h1>Details of <q>{{ word.en }}</q></h1>
+    <ul>
+    	<li>Russian: {{ word.ru }}</li>
+    	<li>Uzbek: {{ word.uz }}</li>
+    	<!-- <li>Russian: {{ word.ru }}</li> -->
+    </ul>
+    <a href="{% url 'speak' w_id=word.id %}">
+    	<i class="fa-solid fa-play"></i> Speak english
+    </a>
+    <span> | </span>
+    <a href="{% url 'speak_ru' w_id=word.id %}">
+    	<i class="fa-solid fa-play"></i> Speak russian
+    </a>
+{% endblock %}

@@ -17,6 +17,7 @@
 						<th>English</th>
 						<th>Russian</th>
 						<th>Uzbek</th>
+						<th>View Details</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -31,6 +32,9 @@
 								{% else %}
 									-
 								{% endif %}
+							</td>
+							<td>
+								<a href="{% url 'details_dictionary' word.id %}">View</a>
 							</td>
 						</tr>
 					{% endfor %}

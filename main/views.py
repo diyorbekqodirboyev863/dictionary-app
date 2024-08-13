@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.utils.text import slugify
 from .models import Category, Term, Dictionary
 from .forms import DictionaryForm, CategoryForm, TermForm
+from django.http import HttpResponse
+import pyttsx3
 
 # Home.
 def home(request):
@@ -60,6 +62,34 @@ def delete_dictionary(request):
         # Display the list of words.
         words = Dictionary.objects.all()
         return render(request=request, template_name='delete.html', context={'words': words})
+
+# Details of dictionary.
+def details_dictionary(request, w_id):
+    '''Details of dictionary.'''
+    word = Dictionary.objects.get(id=w_id)
+    return render(request=request, template_name='details.html', context={'word': word})
+
+# Speak.
+def speak(request, w_id):
+    '''Speak.'''
+    word = Dictionary.objects.get(id=w_id)
+    if word:
+        engine = pyttsx3.init()
+        engine.say(word.en)
+        engine.runAndWait()
+        return redirect(to='details_dictionary', w_id=word.id)
+
+# Speak Russian.
+def speak_ru(request, w_id):
+    '''Speak Russian.'''
+    word = Dictionary.objects.get(id=w_id)
+    engine = pyttsx3.init()
+    voices = engine.getProperty('voices')
+    engine.setProperty('voice', voices[2].id)
+    if word:
+        engine.say(word.ru)
+        engine.runAndWait()
+        return redirect(to='details_dictionary', w_id=word.id)
 
 # CATEGORY.
 
