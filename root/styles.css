@@ -2,8 +2,39 @@
 	font-family: 'Roboto Mono', monospace;
 }
 
-.m-flex {
+body {
+	height: 100vh;
+	background: #222;
+	color: #fff;
+}
+
+.container {
+	width: 80%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+ul li {
+	list-style: square;
+}
+
+a {
+	color: #03b7ff;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #0484b8;
+}
+
+main .m-flex {
+	width: 500px;
 	display: flex;
 	align-items: center;
-	background: red;
+	justify-content: space-between;
+	border-bottom: 1px solid #000;
+	background: #333;
+	padding: 0 20px;
+	gap: 35px;
 }
+
