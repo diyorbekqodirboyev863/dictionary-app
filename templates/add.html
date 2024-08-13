@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% block title %}Edit Dictionary{% endblock %}
+{% block title %}Add {{ name }}{% endblock %}
 
 {% block content %}
-    <!-- Edit. -->
-    <h1>Edit Dictionary</h1>
+    <!-- Add. -->
+    <h1>Add {{ name }}</h1>
     <form method="post" action="#">
         {% csrf_token %}
         {{ form.as_div }}

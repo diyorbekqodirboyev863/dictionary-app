@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect
 from django.utils.text import slugify
 from .models import Category, Term, Dictionary
-from .forms import DictionaryForm, CategoryForm
+from .forms import DictionaryForm, CategoryForm, TermForm
 
 # Home.
 def home(request):
 	'''Home.'''
 	words = Dictionary.objects.all() # Get all words.
 	return render(request=request, template_name='home.html', context={})
+
+# DICTIONARY.
 
 # Add dictionary.
 def add_dictionary(request):
@@ -21,8 +23,8 @@ def add_dictionary(request):
         form = DictionaryForm()
 
     return render(request=request,
-        template_name='add_dictionary.html',
-        context={'form': form})
+        template_name='add.html',
+        context={'form': form, 'name': 'Dictionary'})
 
 # Change dictionary.
 def change_dictionary(request):
@@ -43,8 +45,8 @@ def edit_dictionary(request, w_id):
         form = DictionaryForm(instance=word)
 
     return render(request=request,
-        template_name='edit_dictionary.html',
-        context={'form': form})
+        template_name='edit.html',
+        context={'form': form, 'name': 'Dictionary'})
 
 # Delete dictionary.
 def delete_dictionary(request):
@@ -57,7 +59,9 @@ def delete_dictionary(request):
     else:
         # Display the list of words.
         words = Dictionary.objects.all()
-        return render(request=request, template_name='delete_dictionary.html', context={'words': words})
+        return render(request=request, template_name='delete.html', context={'words': words})
+
+# CATEGORY.
 
 # Add category.
 def add_category(request):
@@ -69,7 +73,7 @@ def add_category(request):
             return redirect(to='home')
     else:
         form = CategoryForm()
-    return render(request=request, template_name='add_category.html', context={'form': form})
+    return render(request=request, template_name='add.html', context={'form': form, 'name': 'Category'})
 
 # Chane category.
 def change_category(request):
@@ -88,7 +92,7 @@ def edit_category(request, c_id):
             return redirect(to='change_category')
     else:
         form = CategoryForm(instance=category)
-    return render(request=request, template_name='edit_category.html', context={'form': form})
+    return render(request=request, template_name='edit.html', context={'form': form, 'name': 'Category'})
 
 # Delete category.
 def delete_category(request):
@@ -100,4 +104,49 @@ def delete_category(request):
         return redirect(to='home')
     else:
         categories = Category.objects.all() # Get all categories list.
-        return render(request=request, template_name='delete_category.html', context={'categories': categories})
+        return render(request=request, template_name='delete.html', context={'categories': categories})
+
+# TERMS.
+
+# Add tems.
+def add_term(request):
+    '''Add term.'''
+    if request.method == 'POST':
+        form = TermForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(to='home')
+    else:
+        form = TermForm()
+    return render(request=request, template_name='add.html', context={'form': form, 'name': 'Term'})
+
+# Change term.
+def change_term(request):
+    '''Change term.'''
+    terms = Term.objects.all() # Get all terms.
+    return render(request=request, template_name='change_term.html', context={'terms': terms})
+
+# Edit term.
+def edit_term(request, t_id):
+    '''Edit term.'''
+    term = Term.objects.get(id=t_id)
+    if request.method == 'POST':
+        form = TermForm(request.POST, instance=term)
+        if form.is_valid():
+            form.save()
+            return redirect('change_term')
+    else:
+        form = TermForm(instance=term)
+    return render(request=request, template_name='edit.html', context={'form': form, 'name': 'Term'})
+
+# Delete term.
+def delete_term(request):
+    '''Delete term.'''
+    if request.method == 'POST':
+        term_ids = request.POST.getlist('term_ids')
+        if term_ids:
+            Term.objects.filter(id__in=term_ids).delete()
+        return redirect(to='home')
+    else:
+        terms = Term.objects.all() # Get all categories list.
+        return render(request=request, template_name='delete.html', context={'terms': terms})

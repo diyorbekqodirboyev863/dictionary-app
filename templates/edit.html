@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% block title %}Edit Category{% endblock %}
+{% block title %}Edit {{ name }}{% endblock %}
 
 {% block content %}
     <!-- Edit. -->
-    <h1>Edit Category</h1>
-    <form method="post" action="#">
+    <h1>Add {{ name }}</h1>
+    <form method="post">
         {% csrf_token %}
         {{ form.as_div }}
         <button type="submit">Save</button>
